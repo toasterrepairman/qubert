@@ -9,17 +9,13 @@ struct Args {
     #[arg(short, long)]
     prompt: String,
 
-    /// Minimum generation length
-    #[arg(long, default_value_t = 20)]
-    min: i64,
-
-    /// Maximum generation length
-    #[arg(long, default_value_t = 100)]
-    max: i64,
+    /// File path
+    #[arg(short, long)]
+    model: String,
 }
 
 fn main() {
     let args = Args::parse();
 
-    println!("{}", generator::generate(&args.prompt, args.min, Some(args.max)))
+    println!("{}", generator::generate(&args.prompt, &args.model));
 }
